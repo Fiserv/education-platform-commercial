@@ -1,6 +1,6 @@
 {
-  "title": "REPLACE ME > Developer Studio",
-  "name": "REPLACE ME > DeveloperPortal",
+  "title": "Education Platform - Commercial",
+  "name": "EducationPlatformCommercial",
   "brand": "Fiserv",
   "brandLogoURL": "https://raw.githubusercontent.com/Fiserv/Developer-Portal-Tenant-API/develop/assets/images/Fiserv_Logo.jpg",
   "solution": ["financial-institutions"],
@@ -18,19 +18,19 @@
     "logoURL": "https://raw.githubusercontent.com/Fiserv/Developer-Portal-Tenant-API/develop/assets/images/Portal_Logo.png",
     "description": "To onboard properly into the Developer Studio as a tenant each product must support these APIs so that we can retrieve product specific API specifications and documentation.",
     "longDescription":"To onboard properly into the Developer Studi as a tenant each product must support these APIs so that we can retrieve product specific API specifications and documentation.",
-    "apiSpecification": "/v1/apis/<name_of_tenant>",
-    "layout": "/v1/layouts/<name_of_tenant>",
-    "documentation": "/v1/docs/<name_of_tenant>",
-    "documenttree": "/v1/docs/<name_of_tenant>",
-    "documenttreeV2": "/v2/docs/<name_of_tenant>",
-    "docsCount": "/v2/docs/count/<name_of_tenant>",
-    "sandbox": "/v1/sandboxrun/<name_of_tenant>",
-    "accessConfig": "/v1/fileAccess/<name_of_tenant>",
-    "assets": "/v1/assets/<name_of_tenant>",    
+    "apiSpecification": "/v1/apis/EducationPlatformCommercial",
+    "layout": "/v1/layouts/EducationPlatformCommercial",
+    "documentation": "/v1/docs/EducationPlatformCommercial",
+    "documenttree": "/v1/docs/EducationPlatformCommercial",
+    "documenttreeV2": "/v2/docs/EducationPlatformCommercial",
+    "docsCount": "/v2/docs/count/EducationPlatformCommercial",
+    "sandbox": "/v1/sandboxrun/EducationPlatformCommercial",
+    "accessConfig": "/v1/fileAccess/EducationPlatformCommercial",
+    "assets": "/v1/assets/EducationPlatformCommercial",    
     "feature":[
       {
         "name": "sandBox",
-        "value": false
+        "value": true
       },
       {
         "name": "plugins",
@@ -50,17 +50,17 @@
     "bug": {
       "label": "bug,CommerceHub",
       "template": "bug.md",
-      "assignees": "<github-id>"
+      "assignees": "cjuhlman21"
     },  
     "feedback": {
       "label": "feedback,CommerceHub",
       "template": "feedback.md",
-      "assignees": "<github-id>"
+      "assignees": "cjuhlman21"
     },
     "enhancement": {
       "label": "enhancement,CommerceHub",
       "template": "feature.md",
-      "assignees": "<github-id>"
+      "assignees": "cjuhlman21"
     }
   }]
 }
