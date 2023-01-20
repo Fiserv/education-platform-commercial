@@ -58,6 +58,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
+      x-group-name: Addresses
       x-proxy-name: Get Address
     post:
       tags:
@@ -104,6 +105,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Address'
+      x-group-name: Addresses
       x-proxy-name: Add Address
   '/bal/api/v1/persons/{personId}/addresses/{addressId}':
     get:
@@ -146,6 +148,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
+      x-group-name: Addresses
       x-proxy-name: Get Address by ID
     put:
       tags:
@@ -200,6 +203,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
+      x-group-name: Addresses
       x-proxy-name: Update Address
 components:
   schemas:
