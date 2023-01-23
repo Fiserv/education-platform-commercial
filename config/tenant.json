@@ -10,7 +10,7 @@
         "version": "1.0.0",
         "versionType": "major",
         "releaseNotesPath": "docs/release-notes/2022/march.md",
-        "apiSpecFileNames": ["openapi", "Addresses.API", "Documents.API", "Memos.API", "Permissions.API", "Persons.API", "Phones.API", "Preferences.API", "TaxData.API"]
+        "apiSpecFileNames": ["Addresses.API", "Documents.API", "Memos.API", "Permissions.API", "Persons.API", "Phones.API", "Preferences.API", "TaxData.API"]
       }
   ],
   "product": {
