@@ -1,0 +1,190 @@
+openapi: 3.0.1
+info:
+  title: TaxData
+  description: The TaxData API will return up to 3 years of 1098e and 1099int tax information. Rendering of an individual tax form in either PDF or Image format is supported.
+  version: v1
+paths:
+  '/api/v1/persons/{personId}/tax-data':
+    get:
+      tags:
+        - TaxData
+      parameters:
+        - name: personId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+        - name: year
+          in: query
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: formType
+          in: query
+          schema:
+            $ref: '#/components/schemas/FormType'
+        - name: X-Correlation-ID
+          in: header
+          description: Correlation Id for the request
+          schema:
+            type: string
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TaxData'
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      x-proxy-name: Get Tax Data
+  '/api/v1/persons/{personId}/tax-data/form':
+    get:
+      tags:
+        - TaxData
+      parameters:
+        - name: personId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+        - name: year
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: formType
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FormType'
+        - name: docType
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/DocumentType'
+        - name: X-Correlation-ID
+          in: header
+          description: Correlation Id for the request
+          schema:
+            type: string
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Form'
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      x-proxy-name: Get Tax Data Form
+components:
+  schemas:
+    FormType:
+      enum:
+        - Form1098E
+        - Form1099INT
+      type: string
+    ProblemDetails:
+      type: object
+      properties:
+        code:
+          type: string
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+      additionalProperties:
+        type: object
+        additionalProperties: false
+    TaxData:
+      type: object
+      properties:
+        hasFormCorrection:
+          type: boolean
+        isEligible1098E:
+          type: boolean
+        isInterestFeeIncluded:
+          type: boolean
+        isReportingAvailable:
+          type: boolean
+        isW9SFormRequired:
+          type: boolean
+        taxAmount:
+          type: number
+          format: double
+        type:
+          $ref: '#/components/schemas/FormType'
+        year:
+          type: string
+          nullable: true
+      additionalProperties: false
+    DocumentType:
+      enum:
+        - PDF
+        - IMAGE
+      type: string
+    Form:
+      type: object
+      properties:
+        base64Content:
+          type: string
+          nullable: true
+        format:
+          $ref: '#/components/schemas/DocumentType'
+        type:
+          $ref: '#/components/schemas/FormType'
+      additionalProperties: false
+x-error-codes:
+  TAX4004:
+    Title: Tax form not found.
+  GBL4000:
+    Title: Invalid request.
+  GBL4004:
+    Title: Person not found.
+  GBL5000:
+    Title: An unexpected error was encountered.
+  GBL5003:
+    Title: System not available.
