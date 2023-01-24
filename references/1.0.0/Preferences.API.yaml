@@ -1,0 +1,294 @@
+openapi: 3.0.1
+info:
+  title: preferences
+  description: "The Preferences REST API is used to retrieve all current and historical payment allocation preferences or by a specific type associated to a person. You can also update a payment allocation preferences value by type.\n\n**Example values:**\n```\n{\n\t\"type\": \"UnderpaymentAllocation\",\n\t\"value\": \"MOSTMPA\",\n\t\"isDefault\": true,\n\t\"lastUpdateDateTime\": \"2021-03-25T10:40:59.332604Z\"\n}\n```\n\n**BAL Preferences REST API FAQ:**\n\n1) What does UnderpaymentAllocation mean?\n\n\tA: Underpayments:\n\n\t* ALIGNDLN = Align delinquencies*\n\n\t* PRORTPASTDUE = Prorate by total past due amounts\n\n\t* MOSTMPA = By most delinquent, then lowest MPA\n\n\t\t*Note: States might change the default.*\n\n\t\t**Default allocation method when customer has not saved an option*\n\n2) What does OverpaymentAllocation mean?\n\n\tA: Overpayments:\n\n\t* HIGHINTRT = Highest Interest Rate*\n\n\t* HIGHBAL = Highest current balance\n\n\t* LOWBAL = Lowest current balance\n\n\t* PRORTMPA = Prorate by MPA\n\n\t* NONSUB = Unsub loan(s)**\n\n\t\t**If more than one loan meets has the same interest rate, the payment is applied to the loan without the subsidy. If there are no loans without a subsidy, the payment is prorated across those loans by MPA.*\n\n\t\t***This is a FFELP/DL item only, this will not apply to Earnest.*\n\n3) Is AdvanceDueDate the \"PayDown\" vs \"PayAhead\" option that we would allow the clients to toggle between?\n\n\tA: Yes. Values are \"Y\" or \"N\"\n\n4) Is the API expecting \"TRUE\", \"FALSE\" as the value to be passed for each of these options?\n\n\tA: No. There are actual values. Preference Names: UnderpaymentAllocation, OverpaymentAllocation, AdvanceDueDate"
+  version: v1
+paths:
+  '/api/v1/persons/{personId}/preferences':
+    get:
+      tags:
+        - Preferences
+      parameters:
+        - name: personId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+        - name: X-Correlation-ID
+          in: header
+          description: Correlation Id for the request
+          schema:
+            type: string
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Preferences'
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      x-proxy-name: Get Preferences
+  '/api/v1/persons/{personId}/preferences/{type}':
+    get:
+      tags:
+        - Preferences
+      parameters:
+        - name: personId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+        - name: type
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/PreferenceType'
+        - name: X-Correlation-ID
+          in: header
+          description: Correlation Id for the request
+          schema:
+            type: string
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Preferences'
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      x-proxy-name: Get Preference by Type
+    put:
+      tags:
+        - Preferences
+      parameters:
+        - name: personId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+        - name: type
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/PreferenceType'
+        - name: X-Correlation-ID
+          in: header
+          description: Correlation Id for the request
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangePreference'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ChangePreference'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ChangePreference'
+      responses:
+        '204':
+          description: Success
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      x-proxy-name: Update Preferences
+  '/api/v1/persons/{personId}/preferences/{type}/history':
+    get:
+      tags:
+        - Preferences
+      parameters:
+        - name: personId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+        - name: type
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/PreferenceType'
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: X-Correlation-ID
+          in: header
+          description: Correlation Id for the request
+          schema:
+            type: string
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page`1'
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      x-proxy-name: Get Preference History by Type
+components:
+  schemas:
+    ProblemDetails:
+      type: object
+      properties:
+        code:
+          type: string
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+      additionalProperties:
+        type: object
+        additionalProperties: false
+    PreferenceType:
+      enum:
+        - UnderpaymentAllocation
+        - OverpaymentAllocation
+        - AdvanceDueDate
+      type: string
+    Preferences:
+      type: object
+      properties:
+        isDefault:
+          type: boolean
+        lastUpdateDateTime:
+          type: string
+          format: date-time
+        type:
+          $ref: '#/components/schemas/PreferenceType'
+        value:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ChangePreference:
+      required:
+        - value
+      type: object
+      properties:
+        value:
+          type: string
+      additionalProperties: false
+    ChangeHistory:
+      type: object
+      properties:
+        hasValueChanged:
+          type: boolean
+        updateDateTime:
+          type: string
+          format: date-time
+        value:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Page`1:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChangeHistory'
+          nullable: true
+        limit:
+          type: integer
+          format: int32
+        offset:
+          type: integer
+          format: int32
+        totalCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+x-error-codes:
+  PRE5000:
+    Title: Preference type is invalid.
+  GBL4000:
+    Title: Invalid request.
+  GBL4004:
+    Title: Person not found.
+  GBL5000:
+    Title: An unexpected error was encountered.
+  GBL5003:
+    Title: System not available.
+  GBL5004:
+    Title: Client ID not authorized to update information on the person.
+  GBL4005:
+    Title: Loan not found.
+  GBL4006:
+    Title: Invalid Loan Id.
