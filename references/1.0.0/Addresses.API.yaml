@@ -1,0 +1,369 @@
+openapi: 3.0.1
+info:
+  title: Addresses
+  description: API used to retrieve and update a users Address. This is where a longer description could be included to describe the api in more detail
+  termsOfService: https://FirstData.com/
+  contact:
+    name: First Data Education
+    url: https://FirstData.com/
+  license:
+    name: First Data Education License
+    url: https://FirstData.com/
+  version: v1
+paths:
+  '/bal/api/v1/persons/{personId}/addresses':
+    get:
+      tags:
+        - Addresses
+      parameters:
+        - name: personId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+        - name: isPrimary
+          in: query
+          schema:
+            type: boolean
+            nullable: true
+        - name: isActive
+          in: query
+          schema:
+            type: boolean
+            nullable: true
+        - name: X-Correlation-ID
+          in: header
+          description: Correlation Id for the request
+          schema:
+            type: string
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Address'
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      x-proxy-name: Get Address
+    post:
+      tags:
+        - Addresses
+      parameters:
+        - name: personId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+        - name: X-Correlation-ID
+          in: header
+          description: Correlation Id for the request
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddAddress'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AddAddress'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/AddAddress'
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+      x-proxy-name: Add Address
+  '/bal/api/v1/persons/{personId}/addresses/{addressId}':
+    get:
+      tags:
+        - Addresses
+      parameters:
+        - name: personId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+        - name: addressId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+        - name: X-Correlation-ID
+          in: header
+          description: Correlation Id for the request
+          schema:
+            type: string
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      x-proxy-name: Get Address by ID
+    put:
+      tags:
+        - Addresses
+      parameters:
+        - name: addressId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+        - name: personId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+        - name: X-Correlation-ID
+          in: header
+          description: Correlation Id for the request
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAddress'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAddress'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateAddress'
+      responses:
+        '204':
+          description: Success
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      x-proxy-name: Update Address
+components:
+  schemas:
+    ProblemDetails:
+      type: object
+      properties:
+        code:
+          type: string
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+      additionalProperties:
+        type: object
+        additionalProperties: false
+    LocationCode:
+      enum:
+        - SCHOOL
+        - HOME
+        - WORK
+      type: string
+    Address:
+      type: object
+      properties:
+        city:
+          type: string
+          nullable: true
+        countryCode:
+          type: string
+          nullable: true
+        id:
+          type: string
+          nullable: true
+        isActive:
+          type: boolean
+        isPrimary:
+          type: boolean
+        lastUpdateDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        line1:
+          type: string
+          nullable: true
+        line2:
+          type: string
+          nullable: true
+        line3:
+          type: string
+          nullable: true
+        locationCode:
+          $ref: '#/components/schemas/LocationCode'
+        postalCode:
+          type: string
+          nullable: true
+        state:
+          type: string
+          nullable: true
+      additionalProperties: false
+    AddAddress:
+      required:
+        - city
+        - countryCode
+        - isPrimary
+        - line1
+        - postalCode
+        - state
+      type: object
+      properties:
+        city:
+          type: string
+        countryCode:
+          type: string
+        isPrimary:
+          type: boolean
+        line1:
+          type: string
+        line2:
+          type: string
+          nullable: true
+        line3:
+          type: string
+          nullable: true
+        locationCode:
+          $ref: '#/components/schemas/LocationCode'
+        postalCode:
+          type: string
+        state:
+          type: string
+      additionalProperties: false
+    UpdateAddress:
+      required:
+        - city
+        - countryCode
+        - isPrimary
+        - lastUpdateDateTime
+        - line1
+        - postalCode
+        - state
+      type: object
+      properties:
+        city:
+          type: string
+        countryCode:
+          type: string
+        isPrimary:
+          type: boolean
+        lastUpdateDateTime:
+          type: string
+          format: date-time
+        line1:
+          type: string
+        line2:
+          type: string
+          nullable: true
+        line3:
+          type: string
+          nullable: true
+        locationCode:
+          $ref: '#/components/schemas/LocationCode'
+        postalCode:
+          type: string
+        state:
+          type: string
+      additionalProperties: false
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: http://nwnifieil120.us.ad.usa-ed.net/authorizationdev/connect/token
+          scopes: { }
+x-error-codes:
+  ADD4004:
+    Title: Address record not found.
+  ADD4009:
+    Title: The LastUpdateDateTime is not the latest.
+  GBL4000:
+    Title: Invalid request.
+  GBL4004:
+    Title: Person not found.
+  GBL5000:
+    Title: An unexpected error was encountered.
+  GBL5003:
+    Title: System not available.
+  GBL5004:
+    Title: Client ID not authorized to update information on the person.
+  GBL4005:
+    Title: Loan not found.
+  GBL4006:
+    Title: Invalid Loan Id.
