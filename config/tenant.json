@@ -10,7 +10,7 @@
         "version": "1.0.0",
         "versionType": "major",
         "releaseNotesPath": "docs/release-notes/2022/march.md",
-        "apiSpecFileNames": ["Documents.API_v1", "Permissions.API", "Phones.API", "Preferences.API", "TaxData.API"]
+        "apiSpecFileNames": ["Authorizations.API", "Documents.API_v1", "Permissions.API", "Phones.API", "Preferences.API", "TaxData.API"]
       }
   ],
   "product": {
