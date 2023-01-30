@@ -8,11 +8,10 @@ info:
     Fiserv).
   version: v1
 paths:
-  /connect/token:
+  '/connect/token':
     post:
       tags:
         - Authorizations
-      parameters: null
       requestBody:
         required: true
         content:
