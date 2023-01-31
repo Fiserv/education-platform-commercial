@@ -42,3 +42,4 @@ paths:
                     type: string
                   scope:
                     type: string
+      x-proxy-name: Retrieve Token
