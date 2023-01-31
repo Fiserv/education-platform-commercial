@@ -9,22 +9,22 @@ paths:
       tags:
         - Authorizations
       parameters:
-      - name: client_id
-        in: query
-        required: true
-        schema:
-          type: string
-      - name: client_secret
-        in: query
-        required: true
-        schema:
-          type: string
-      - name: grant_type
-        in: query
-        required: true
-        description: Available Values - client_credentials
-        schema:
-          type: string      
+        - name: client_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: client_secret
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: grant_type
+          in: query
+          required: true
+          description: Available Values - client_credentials
+          schema:
+            type: string      
       responses:
         '200':
           description: A bearer token with the expiration, token type, and scope.
