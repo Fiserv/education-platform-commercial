@@ -42,4 +42,16 @@ paths:
                     type: string
                   scope:
                     type: string
+        '400':
+          description: Bad Request
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    error:
+                      type: string
+                      description: unsupported_grant_type, invalid_client
+        '404':
+          description: Not Found
       x-proxy-name: Retrieve Token
