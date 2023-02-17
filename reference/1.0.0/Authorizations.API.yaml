@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Authorizations
-  description: The Authorization REST API is used to retrieve bearer tokens that the FD Education APIs use to authenticate requests. In order to retrieve a token, a client will pass in a secret along with their client ID (both supplied by Fiserv).
+  description: "Retrieve bearer tokens needed to authenticate all Fiserv Education API client requests. To retrieve a token, a client must pass in a secret and a client ID (both supplied by Fiserv to the client at time of onboarding to the Fiserv platform)."
   version: v1
 paths:
   '/connect/token':
