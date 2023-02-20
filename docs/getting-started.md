@@ -28,8 +28,8 @@ Now you can either download the Postman collection from the API page, or create 
 As stated above, any API call will first start with Authorizations. To set it up do the following.
 
 - Update the "Body"
-    - Select "x-www-form-urlencoded"
-    - Update with three keys: grant_type, client_id, client_secret and assign them the appropriate values.
+  - Select "x-www-form-urlencoded"
+  - Update with three keys: grant_type, client_id, client_secret and assign them the appropriate values.
 
 - Input the Authorizations endpoint and make it a POST method
 
