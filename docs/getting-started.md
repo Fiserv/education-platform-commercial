@@ -33,11 +33,11 @@ As stated above, any API call will first start with Authorizations. To set it up
 
 - Input the Authorizations endpoint and make it a POST method
 
-![AuthorizationsSetup](/assets/images/Getting_Started/Authorization_Body.png)
+![AuthorizationsSetup](/assets/images/Authorization_Body.jpg "Authorizations Body")
 
 Send the request and grab the token from the response. This will be used for calls in other APIs
 
-![AuthorizationsToken](/assets/images/Getting_Started/Authorization_Token.png)
+![AuthorizationsToken](/assets/images/Authorization_Token.png)
 
 ### Other APIs Setup
 
@@ -46,11 +46,11 @@ Now that you have your token you can call any other API. To create the request m
 - Create a new request using the endpoint/method desired (info can be found in the API docs)
 - Under the "Authorization" tab select "Bearer Token" and use the token that was generated in the Authorizations response
 
-![APISetup](/assets/images/Getting_Started/API_Setup.png)
+![APISetup](/assets/images/Getting_Started/API_Setup.png "API Setup")
 
 - Update the "Body" if/as needed, refer to API documentation
 
-![APIBody](/assets/images/Getting_Started/API_Body.png)
+![APIBody](/assets/images/Getting_Started/API_Body.jpg)
 
 - Click "send" when ready
 
