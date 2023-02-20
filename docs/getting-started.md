@@ -23,7 +23,7 @@ First, you will need to go into settings and turn off "SSL Certificate Verificat
 
 Now you can either download the Postman collection from the API page, or create a new request manually. If creatin a new request, see below for instructions.
 
-### Authorizations
+### Authorizations Setup
 
 As stated above, any API call will first start with Authorizations. To set it up do the following.
 
@@ -39,7 +39,7 @@ Send the request and grab the token from the response. This will be used for cal
 
 ![AuthorizationsToken](/assets/images/Getting_Started/Authorization_Token.png)
 
-### Other APIs
+### Other APIs Setup
 
 Now that you have your token you can call any other API. To create the request manually do the following.
 
