@@ -1,21 +1,21 @@
 # Getting Started
 
-### Get Your Credentials
+## Get Your Credentials
 
 Reach out to us {contact info here?} to get your credentials to start calling our APIs.
 
-### Calling APIs
+## Calling APIs
 
-##### Authorizations
+### Authorizations
 
 All API calls will first start with Authorizations. This will provide you with a JSON token to call any of our other APIs with.
 
-##### Subsequent Calls
+### Subsequent Calls
 
 Please refer to the documentation here on what's needed to call other APIs
 
 
-### Try it Out Using Postman
+## Try it Out Using Postman
 
 First, you will need to go into settings and turn off "SSL Certificate Verification"
 
@@ -23,7 +23,7 @@ First, you will need to go into settings and turn off "SSL Certificate Verificat
 
 Now you can either download the Postman collection from the API page, or create a new request manually. If creatin a new request, see below for instructions.
 
-##### Authorizations
+### Authorizations
 
 As stated above, any API call will first start with Authorizations. To set it up do the following.
 
@@ -39,7 +39,7 @@ Send the request and grab the token from the response. This will be used for cal
 
 ![AuthorizationsToken](/assets/images/Getting_Started/Authorization_Token.png)
 
-##### Other APIs
+### Other APIs
 
 Now that you have your token you can call any other API. To create the request manually do the following.
 
