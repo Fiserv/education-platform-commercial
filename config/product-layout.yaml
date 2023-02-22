@@ -28,43 +28,25 @@
 # the delivery of this work
 ################################################################################
 header:
-  productName: REPLACEME
+  productName: Education Platform - Commercial
   productionDescription: "The Education Platform from Fiserv (EPF) offers loan processing services that clients can leverage to enable student loan servicing and account support activities. Our processing services are designed to easily integrate with client hosted technology or line of business solutions."
-  whoIsItFor: REPLACEME
+  whoIsItFor: Student Loan Servicers
   image: 
     link: "/assets/images/Fiserv_Logo.jpg"
-    altText: REPLACEME™
+    altText: Education Platform from Fiserv
 featuredFeatures:
-  - title: REPLACE ME
-    description:  REPLACE ME
+  - title: Borrower
+    description:  Manage various piecies of information that directly realte to the borrower.
     tags: ["REPLACEME", "REPLACEME", "REPLACEME"]
     bullets: ["REPLACEME", "REPLACEME" ]  
     relatedDocs:
       - relatedDoc: 
-        title: REPLACEME
-        description: REPLACEME
-        link: ./docs/REPLACE-ME1.md
-      - relatedDoc: 
-        title: REPLACEME
-        description: REPLACEME
-        link: ./docs/REPLACE-ME2.md
-      - relatedDoc: 
-        title: REPLACEME
-        description: REPLACEME
-        link: ./docs/REPLACE-ME3.md
+        title: Getting Started
+        description: Learn how to get started using these APIs
+        link: ./docs/getting-started.md
     relatedAPIs:
       - relatedAPI: 
-        title: REPLACEME
-        description: REPLACEME
-        type: "patch"        
-        path: "/v1/REPLACEME1"
-      - relatedAPI: 
-        title: REPLACEME
-        description: REPLACEME
+        title: Authorizations
+        description: Get a token to call other APIs
         type: "post"        
-        path: "/v1/REPLACEME2"
-      - relatedAPI: 
-        title: REPLACEME
-        description: REPLACEME
-        type: "get"        
-        path: "/v1/REPLACEME3"
+        path: "/v1/Authorizations"
