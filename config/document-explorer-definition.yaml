@@ -32,6 +32,19 @@
   - title: Getting Started
     link: docs/getting-started.md
 - sections:
+  - title: FAQs
+    sections:
+    - title: Addresses
+      link: docs/FAQ/AddressesFAQ.md
+    - title: Permissions
+      link: docs/FAQ/PermissionsFAQ.md
+    - title: Persons
+      link: docs/FAQ/PersonsFAQ.md
+    - title: Phones
+      link: docs/FAQ/PhonesFAQ.md
+    - title: Preferences
+      link: docs/FAQ/PreferencesFAQ.md
+- sections:
   - title: Release notes
     sections:
     - title: March 2022
