@@ -15,27 +15,30 @@ All API calls will first start with Authorizations. This will provide you with a
 Please refer to the documentation here on what's needed to call other APIs
 
 
-## Try it Out Using Postman
+## Try it Out
 
 First, you will need to go into settings and turn off "SSL Certificate Verification"
 
-![SSLCert](/assests/images/Getting_Started/SSLCert_Setting.png)
+![SSLCert](/assets/images/Getting_Started/SSLCert_Setting.png)
 
-Now you can either download the Postman collection from the API page, or create a new request manually. If creatin a new request, see below for instructions.
+If using Postman you can download the Postman collection from the API page, or create a new request manually. 
+
+If using a tool other then postman or simply creating a new request, see below for instructions.
 
 ### Authorizations Setup
 
-As stated above, any API call will first start with Authorizations. To set it up do the following.
-
-- Update the "Body"
-  - Select "x-www-form-urlencoded"
-  - Update with three keys: grant_type, client_id, client_secret and assign them the appropriate values.
+As stated above, any API call will first start with Authorizations. Use the following information
 
 - Input the Authorizations endpoint and make it a POST method
 
-![AuthorizationsSetup](/assets/images/Authorization_Body.jpg "Authorizations Body")
+![AuthorizationsSetup](/assets/images/Authorization_Body.jpg)
 
-Send the request and grab the token from the response. This will be used for calls in other APIs
+Ensure your body has properties for:
+ - grant_type
+ - client_id
+ - client_secret
+
+Send the request and use the bearer token from the response. This will be used for calls in other APIs
 
 ![AuthorizationsToken](/assets/images/Authorization_Token.png)
 
@@ -44,7 +47,7 @@ Send the request and grab the token from the response. This will be used for cal
 Now that you have your token you can call any other API. To create the request manually do the following.
 
 - Create a new request using the endpoint/method desired (info can be found in the API docs)
-- Under the "Authorization" tab select "Bearer Token" and use the token that was generated in the Authorizations response
+- Use the bearer token that was generated in the Authorizations response
 
 ![APISetup](/assets/images/Getting_Started/API_Setup.png "API Setup")
 
