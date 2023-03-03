@@ -30,15 +30,20 @@ If using a tool other then postman or simply creating a new request, see below f
 As stated above, any API call will first start with Authorizations. Use the following information
 
 - Input the Authorizations endpoint and make it a POST method
-
-![AuthorizationsSetup](/assets/images/Authorization_Body.jpg)
+- Encoding is x-www-form-urlencoded
 
 Ensure your body has properties for:
  - grant_type
  - client_id
  - client_secret
 
-Send the request and use the bearer token from the response. This will be used for calls in other APIs
+In postman this looks like:
+
+![AuthorizationsSetup](/assets/images/Authorization_Body.jpg)
+
+Once you send the request you will recieve a response with a bearer token. This will be used for calls in other APIs
+
+In postman this looks like:
 
 ![AuthorizationsToken](/assets/images/Authorization_Token.png)
 
@@ -47,15 +52,15 @@ Send the request and use the bearer token from the response. This will be used f
 Now that you have your token you can call any other API. To create the request manually do the following.
 
 - Create a new request using the endpoint/method desired (info can be found in the API docs)
-- Use the bearer token that was generated in the Authorizations response
-
-![APISetup](/assets/images/Getting_Started/API_Setup.png "API Setup")
-
+- Use the bearer token that was generated in the Authorizations response in your authorization header
 - Update the "Body" if/as needed, refer to API documentation
 
-![APIBody](/assets/images/Getting_Started/API_Body.jpg)
-
 - Click "send" when ready
+
+In postman this looks like:
+
+![APISetup](/assets/images/Getting_Started/API_Setup.png "API Setup")
+![APIBody](/assets/images/Getting_Started/API_Body.jpg)
 
 Note: If you get an 401 Unauthorized, make sure your token is correct and hasn't expired. Call Authorizations again and grab the new token if needed.
 
