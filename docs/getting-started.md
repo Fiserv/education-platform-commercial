@@ -53,7 +53,7 @@ Now that you have your token you can call any other API. To create the request m
 
 - Create a new request using the endpoint/method desired (info can be found in the API docs)
 - Use the bearer token that was generated in the Authorizations response in your authorization header
-- Update the "Body" if/as needed, refer to API documentation
+- Update the "Body" if/as needed, refer to the documentation for the API you are calling
 
 - Click "send" when ready
 
