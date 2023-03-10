@@ -1,0 +1,126 @@
+openapi: 3.0.1
+info:
+  title: Memos
+  description: Retrieve or add comment codes to a specific loan. Free-form comments are also supported. Refer to the list of valid code values and descriptions available in the Education Platform from Fiserv (EPF) client documentation site.
+  termsOfService: https://fiserv.com/
+  contact:
+    name: Fiserv
+    url: https://fiserv.com/
+  license:
+    name: First Data Education License
+    url: https://fiserv.com/
+  version: v1
+paths:
+  '/bal/api/v1/loans/{loanId}/memo':
+    post:
+      tags:
+        - Memo
+      parameters:
+        - name: loanId
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          description: Correlation Id for the request
+          style: simple
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MemoRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/MemoRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/MemoRequest'
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '500':
+          description: Server Error
+  '/bal/api/v1/persons/{personId}/memo':
+    post:
+      tags:
+        - Memo
+      parameters:
+        - name: personId
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          description: Correlation Id for the request
+          style: simple
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MemoRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/MemoRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/MemoRequest'
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '500':
+          description: Server Error
+components:
+  schemas:
+    MemoRequest:
+      required:
+        - code
+        - description
+      type: object
+      properties:
+        code:
+          minLength: 1
+          type: string
+        description:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    ProblemDetails:
+      type: object
+      properties:
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+      additionalProperties: { }
