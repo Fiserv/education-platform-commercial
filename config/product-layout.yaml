@@ -34,19 +34,19 @@ header:
   image: 
     link: "/assets/images/Fiserv_Logo.jpg"
     altText: Education Platform from Fiserv
-featuredFeatures:
-  - title: Borrower
-    description:  Manage various piecies of information that directly realte to the borrower.
-    tags: ["REPLACEME", "REPLACEME", "REPLACEME"]
-    bullets: ["REPLACEME", "REPLACEME" ]  
-    relatedDocs:
-      - relatedDoc: 
-        title: Getting Started
-        description: Learn how to get started using these APIs
-        link: ./docs/getting-started.md
-    relatedAPIs:
-      - relatedAPI: 
-        title: Authorizations
-        description: Get a token to call other APIs
-        type: "post"        
-        path: "/v1/Authorizations"
+  featuredFeatures:
+    - title: Borrower
+      description:  Manage various piecies of information that directly realte to the borrower.
+      tags: ["REPLACEME", "REPLACEME", "REPLACEME"]
+      bullets: ["REPLACEME", "REPLACEME" ]  
+      relatedDocs:
+        - relatedDoc: 
+          title: Getting Started
+          description: Learn how to get started using these APIs
+          link: ./docs/getting-started.md
+      relatedAPIs:
+        - relatedAPI: 
+          title: Authorizations
+          description: Get a token to call other APIs
+          type: "post"        
+          path: "/v1/Authorizations"
