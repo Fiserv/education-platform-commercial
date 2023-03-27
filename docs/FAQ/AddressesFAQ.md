@@ -2,7 +2,7 @@
 
 ## Addresses API
 
-1. Where do we get the LocationCode value from?\n
+1. Where do we get the LocationCode value from?/n
   A: The API is expecting one of these "SCHOOL, HOME, WORK"
 
 2. How do I only get the primary address?
