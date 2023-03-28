@@ -1,6 +1,6 @@
 # FAQ
 
-## Permissions API
+## Permissions
 
 1. Fiserv accepts a Boolean (True/False) value for these fields : Email1098, EmailRegulatory, EmailNonRegulatory, EmailMarketing, PhoneMarketing, USPSMarketing, AffiliateShareMarketing
   1. If Paperless is selected, we would pass TRUE for the fields "Email1098, EmailRegulatory, EmailNonRegulatory
