@@ -35,6 +35,6 @@
   
     A: /phones/api/v1/persons/[personid]/phones?isWorkPhoneNumber=true
   
-9. How many active phone numbers can be stored for the customer?
+9. How many active phone numbers can be associated to a person?
   
-    A: Unlimited
+    A: There is currently no limit to the number of active phone numbers a person can have associated to their account.
