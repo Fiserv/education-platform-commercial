@@ -1,6 +1,6 @@
 # FAQ
 
-## Persons API
+## Persons
 
 1. What is the field hasPaymentFraud used for?
   
