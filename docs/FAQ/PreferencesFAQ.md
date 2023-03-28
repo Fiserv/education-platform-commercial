@@ -1,6 +1,6 @@
 # FAQ
 
-## Preferences API
+## Preferences
 
 1. What does UnderpaymentAllocation mean?
   
