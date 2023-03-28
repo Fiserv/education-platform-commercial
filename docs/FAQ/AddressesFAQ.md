@@ -1,6 +1,6 @@
 # FAQ
 
-## Addresses API
+## Addresses
 
 1. Where do we get the LocationCode value from?
 
