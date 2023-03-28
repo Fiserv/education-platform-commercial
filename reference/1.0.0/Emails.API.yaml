@@ -1,0 +1,315 @@
+openapi: 3.0.1
+info:
+  title: Emails
+  description: "Retrieve, add, or update a borrower's email address including the email address' primary and active statuses.\n\n**Example Values:**\n```\n{\n\t\"address\": \"user@example.com\",\n\t\"id\": \"1\",\n\t\"isPrimary\": true,\n\t\"isActive\": true,\n\t\"lastUpdateDateTime\": \"2021-11-04T18:33:23Z\"\n}\n```\n\n**BAL Emails REST API FAQ:**\n1) How do I only get the primary email?\n\n\t A: /emails/api/v1/persons/[personid]/emails?isPrimary=true\n2) Is it possible to have one or more active email address and none of them are primary? \n\n\t A: Yes, they would all be considered Alternates"
+  termsOfService: https://FirstData.com/
+  contact:
+    name: First Data Education
+    url: https://FirstData.com/
+  license:
+    name: First Data Education License
+    url: https://FirstData.com/
+  version: v1
+paths:
+  '/bal/api/v1/persons/{personId}/emails':
+    get:
+      tags:
+        - Emails
+      parameters:
+        - name: personId
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: isActive
+          in: query
+          style: form
+          schema:
+            type: boolean
+        - name: isPrimary
+          in: query
+          style: form
+          schema:
+            type: boolean
+        - name: X-Correlation-ID
+          in: header
+          description: Correlation Id for the request
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Email'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      x-proxy-name: Get Email
+    post:
+      tags:
+        - Emails
+      parameters:
+        - name: personId
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          description: Correlation Id for the request
+          style: simple
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddEmail'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AddEmail'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/AddEmail'
+      responses:
+        '201':
+          description: Created
+          headers:
+            Location:
+              description: Location of the newly created resource
+              schema:
+                type: string
+                description: Location of the newly created resource
+                format: ''
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      x-proxy-name: Add Email
+  '/bal/api/v1/persons/{personId}/emails/{emailId}':
+    get:
+      tags:
+        - Emails
+      parameters:
+        - name: personId
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: emailId
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          description: Correlation Id for the request
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Email'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      x-proxy-name: Get Email by ID
+    put:
+      tags:
+        - Emails
+      parameters:
+        - name: emailId
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: personId
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+        - name: X-Correlation-ID
+          in: header
+          description: Correlation Id for the request
+          style: simple
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateEmail'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateEmail'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateEmail'
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      x-proxy-name: Update Email
+components:
+  schemas:
+    AddEmail:
+      required:
+        - address
+      type: object
+      properties:
+        address:
+          minLength: 1
+          type: string
+          format: email
+        isPrimary:
+          type: boolean
+          default: false
+      additionalProperties: false
+    Email:
+      required:
+        - address
+      type: object
+      properties:
+        address:
+          minLength: 1
+          type: string
+          format: email
+        id:
+          type: string
+          nullable: true
+        isActive:
+          type: boolean
+        isPrimary:
+          type: boolean
+        lastUpdateDateTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    ProblemDetails:
+      type: object
+      properties:
+        code:
+          type: string
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    UpdateEmail:
+      required:
+        - address
+        - lastUpdateDateTime
+      type: object
+      properties:
+        address:
+          minLength: 1
+          type: string
+          format: email
+        isActive:
+          type: boolean
+          default: false
+        isPrimary:
+          type: boolean
+          default: false
+        lastUpdateDateTime:
+          type: string
+          format: date-time
+      additionalProperties: false
+x-error-codes:
+  EMA4002:
+    Title: The email address already exists.
+  EMA4003:
+    Title: The LastUpdateDateTime is not the latest.
+  EMA4004:
+    Title: Email record not found.
+  EMA4005:
+    Title: The Email Address for an existing record cannot be changed.
+  GBL4000:
+    Title: Invalid request.
+  GBL4004:
+    Title: Person not found.
+  GBL5000:
+    Title: An unexpected error was encountered.
+  GBL5003:
+    Title: System not available.
+  GBL5004:
+    Title: Client ID not authorized to update information on the person.
+  GBL4005:
+    Title: Loan not found.
+  GBL4006:
+    Title: Invalid Loan Id.
