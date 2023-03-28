@@ -18,10 +18,10 @@
   
     A: /phones/api/v1/persons/[personid]/phones?isPrimary=true
   
-5. How do I only get "land" numbers? 
-  
-    A: /phones/api/v1/persons/[personid]/phones?Type=Land\n\n\t 
-  *NOTE: Other phone type filter options: Cell, Land, Wireless, Pager, Fax, Foreign*
+5. How can I get only certain types of phone numbers back?
+
+    A: To only get "land" numbers, then <path>. 
+To only get "cell" numbers, then <path>. And so on for each of the applicable types.
   
 6. How do I only get work numbers?
   
