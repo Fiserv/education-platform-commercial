@@ -1,6 +1,6 @@
 # FAQ
 
-## Phones API
+## Phones
 
 1. Where do we get the AutoDialConsentReason value from?
   
