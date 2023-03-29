@@ -16,6 +16,6 @@
 
       A: No, each permission code/type has its own value. You can set all codes/types to the same value or you can have a mix of TRUE and FALSE values.
   
-4. Is Text marketing the same as "PhoneMarketing" in the API?
+4. Does "PhoneMarketing" also cover marketing permission for Text?
   
-    A: No. (Text marketing is supported by the Phone API.)
+    A: No, text marketing permissions are supported by the Phones API.
