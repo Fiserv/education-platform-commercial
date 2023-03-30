@@ -11,7 +11,7 @@ info:
     url: https://fiserv.com/
   version: v1
 paths:
-  '/bal/api/v1/loans/{loanId}/memo':
+  '/api/v1/loans/{loanId}/memo':
     post:
       tags:
         - Memo
@@ -50,7 +50,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
         '500':
           description: Server Error
-  '/bal/api/v1/persons/{personId}/memo':
+  '/api/v1/persons/{personId}/memo':
     post:
       tags:
         - Memo
