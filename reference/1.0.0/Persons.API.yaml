@@ -11,7 +11,7 @@ info:
     url: https://FirstData.com/
   version: v1
 paths:
-  '/bal/api/v1/persons/{personId}':
+  '/api/v1/persons/{personId}':
     get:
       tags:
         - Persons
