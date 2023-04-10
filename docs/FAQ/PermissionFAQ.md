@@ -8,7 +8,7 @@
       A: Pass a TRUE value.
 
   
-2. How do I indicate to send correspondence via USPS for a given permission code/type (i.e., Email 1098)?
+2. How do I indicate to send correspondence via USPS for a given permission code/type (i.e., Email1098)?
 
       A: Pass a FALSE value.
   
