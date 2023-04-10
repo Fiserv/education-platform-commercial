@@ -50,6 +50,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
         '500':
           description: Server Error
+      x-proxy-name: Post Loan Memo
   '/api/v1/persons/{personId}/memo':
     post:
       tags:
@@ -89,6 +90,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
         '500':
           description: Server Error
+      x-proxy-name: Post Person Memo
 components:
   schemas:
     MemoRequest:
