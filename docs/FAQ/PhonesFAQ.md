@@ -2,23 +2,18 @@
 
 ## Phones
   
-1. How do I only get "good" numbers?
+1. How can I get only certain phone numbers back?
+    
+    A: Each phone number contains optional attributes that can be used to customize the result set to the sub-set of active phone numbers you are interested in. Leaving these attributes off altogether will result in all active phone numbers associated to the person being returned. Example use cases include:
+    
+	  To get only “good” (i.e., not bad or disconnected) phone numbers, use /phones/api/v1/persons/[personid]/phones?status=good
   
-    A: /phones/api/v1/persons/[personid]/phones?status=good
-  
-2. How do I only get the primary number?
-  
-    A: /phones/api/v1/persons/[personid]/phones?isPrimary=true
-  
-3. How can I get only certain types of phone numbers back?
+    To get the phone number the person has designated as the primary number, use /phones/api/v1/persons/[personid]/phones?isPrimary=true
 
-    A: To only get "land" numbers, then <path>. 
-To only get "cell" numbers, then <path>. And so on for each of the applicable types.
-  
-4. How do I only get work numbers?
-  
-    A: /phones/api/v1/persons/[personid]/phones?isWorkPhoneNumber=true
-  
-5. How many active phone numbers can be associated to a person?
+    To get only phone numbers the person has designated as work numbers, use /phones/api/v1/persons/[personid]/phones?isWorkPhoneNumber=true
+
+    To get only cell (aka mobile) phone numbers, use /phones/api/v1/persons/[personid]/phones?Type=cell
+
+2. How many active phone numbers can be associated to a person?
   
     A: There is currently no limit to the number of active phone numbers a person can have associated to their account.
