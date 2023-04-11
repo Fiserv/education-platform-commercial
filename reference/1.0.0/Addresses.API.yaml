@@ -353,13 +353,6 @@ components:
           type: string
           nullable: true
       additionalProperties: false
-  securitySchemes:
-    oauth2:
-      type: oauth2
-      flows:
-        clientCredentials:
-          tokenUrl: 'http://nwnifieil120.us.ad.usa-ed.net/authorizationdev/connect/token'
-          scopes: {}
 x-error-codes:
   ADD4001:
     Title: City is required.
