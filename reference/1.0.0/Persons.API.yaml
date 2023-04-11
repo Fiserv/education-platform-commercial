@@ -2,13 +2,13 @@ openapi: 3.0.1
 info:
   title: Persons
   description: "Retrieve high level account information (such as name, date of birth, customer identification number, role, exception status etc.) by the PersonId. A person can be a borrower, cosigner, or endorser.\n\n**Example Values:**\n```\n{\n\t\"customerIdentificationNumber\": \"1234567890\",\n\t\"dateOfBirth\": \"2022-05-26T16:04:53.632Z\",\n\t\"exceptionStatus\": \"Bankruptcy\",\n\t\"firstName\":\"John\",\n\t\"hasPaymentFraud\": true,\n\t\"lastFourOfSSN\":\"1234\",\n\t\"lastName\":\"Doe\",\n\t\"middleInitial\":\"D\",\n\t\"roles\": {\n\t\t\"isBorrower\": true,\n\t\t\"isCosigner\": true,\n\t\t\"isInfoEligible\": true\n\t},\n\t\"suffix\": \"II\"\n}\n```\n**BAL Persons REST API FAQ:**\n1) What is the field hasPaymentFraud used for? \n\n\t A: This is an indicator manually set by the Business when they suspect fraud on the account"
-  termsOfService: https://FirstData.com/
+  termsOfService: 'https://FirstData.com/'
   contact:
     name: First Data Education
-    url: https://FirstData.com/
+    url: 'https://FirstData.com/'
   license:
     name: First Data Education License
-    url: https://FirstData.com/
+    url: 'https://FirstData.com/'
   version: v1
 paths:
   '/api/v1/persons/{personId}':
@@ -113,7 +113,7 @@ components:
         type:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: {}
     Roles:
       type: object
       properties:
