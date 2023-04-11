@@ -23,13 +23,11 @@ paths:
         - name: loanId
           in: path
           required: true
-          style: simple
           schema:
             type: string
         - name: X-Correlation-ID
           in: header
           description: Correlation Id for the request
-          style: simple
           schema:
             type: string
       requestBody:
@@ -63,13 +61,11 @@ paths:
         - name: personId
           in: path
           required: true
-          style: simple
           schema:
             type: string
         - name: X-Correlation-ID
           in: header
           description: Correlation Id for the request
-          style: simple
           schema:
             type: string
       requestBody:
