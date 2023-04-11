@@ -2,13 +2,13 @@ openapi: 3.0.1
 info:
   title: Emails
   description: "Retrieve, add, or update a borrower's email address including the email address' primary and active statuses.\n\n**Example Values:**\n```\n{\n\t\"address\": \"user@example.com\",\n\t\"id\": \"1\",\n\t\"isPrimary\": true,\n\t\"isActive\": true,\n\t\"lastUpdateDateTime\": \"2021-11-04T18:33:23Z\"\n}\n```\n\n**BAL Emails REST API FAQ:**\n1) How do I only get the primary email?\n\n\t A: /emails/api/v1/persons/[personid]/emails?isPrimary=true\n2) Is it possible to have one or more active email address and none of them are primary? \n\n\t A: Yes, they would all be considered Alternates"
-  termsOfService: https://FirstData.com/
+  termsOfService: 'https://FirstData.com/'
   contact:
     name: First Data Education
-    url: https://FirstData.com/
+    url: 'https://FirstData.com/'
   license:
     name: First Data Education License
-    url: https://FirstData.com/
+    url: 'https://FirstData.com/'
   version: v1
 paths:
   '/api/v1/persons/{personId}/emails':
@@ -189,14 +189,14 @@ paths:
       responses:
         '204':
           description: No Content
-        '404':
-          description: Not Found
+        '400':
+          description: Bad Request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
-        '400':
-          description: Bad Request
+        '404':
+          description: Not Found
           content:
             application/json:
               schema:
@@ -269,7 +269,7 @@ components:
         type:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: {}
     UpdateEmail:
       required:
         - address
