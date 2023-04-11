@@ -1,14 +1,14 @@
 openapi: 3.0.1
 info:
   title: Addresses
-  description: "Retrieve, add, or update a borrower's postal mailing address, including the address' primary and active statuses.  Both domestic and international addresses are supported.\n\n**Example Values:**\n```\n{\n\t\"city\": \"Brookfield\",\n\t\"countryCode\": \"USA\",\n\t\"id\": \"1\",\n\t\"isPrimary\": true,\n\t\"isActive\": true,\n\t\"lastUpdateDateTime\": \"2021-11-04T18:33:23Z\",\n\t\"line1\": \"255 Fiserv Dr.\",\n\t\"line2\": \"\",\n\t\"line3\": \"\",\n\t\"locationCode\": \"WORK\",\n\t\"postalCode\": \"53045\",\n\t\"state\": \"WI\"\n}\n```\n\n**BAL Addresses REST API FAQ:**\n1) Where do we get the LocationCode value from?\n\n\t A: The API is expecting one of these \"SCHOOL, HOME, WORK\"\n2) How do I only get the primary address?\n\n\t A: /addresses/api/v1/persons/[personid]/addresses?isPrimary=true\n3) Are addresses validated?\n\n\t A: There is internal validation run, but as long as all required fields are present it will be stored"
-  termsOfService: 'https://FirstData.com/'
+  description: Retrieve, add, or update a borrower's postal mailing address, including the address' primary and active statuses.  Both domestic and international addresses are supported.\n\n**Example Values:**\n```\n{\n\t\"city\": \"Brookfield\",\n\t\"countryCode\": \"USA\",\n\t\"id\": \"1\",\n\t\"isPrimary\": true,\n\t\"isActive\": true,\n\t\"lastUpdateDateTime\": \"2021-11-04T18:33:23Z\",\n\t\"line1\": \"255 Fiserv Dr.\",\n\t\"line2\": \"\",\n\t\"line3\": \"\",\n\t\"locationCode\": \"WORK\",\n\t\"postalCode\": \"53045\",\n\t\"state\": \"WI\"\n}\n```\n\n**BAL Addresses REST API FAQ:**\n1) Where do we get the LocationCode value from?\n\n\t A: The API is expecting one of these \"SCHOOL, HOME, WORK\"\n2) How do I only get the primary address?\n\n\t A: /addresses/api/v1/persons/[personid]/addresses?isPrimary=true\n3) Are addresses validated?\n\n\t A: There is internal validation run, but as long as all required fields are present it will be stored
+  termsOfService: https://FirstData.com/
   contact:
     name: First Data Education
-    url: 'https://FirstData.com/'
+    url: https://FirstData.com/
   license:
     name: First Data Education License
-    url: 'https://FirstData.com/'
+    url: https://FirstData.com/
   version: v1
 paths:
   '/api/v1/persons/{personId}/addresses':
@@ -21,20 +21,29 @@ paths:
           required: true
           schema:
             type: string
+            nullable: true
         - name: isPrimary
           in: query
           schema:
             type: boolean
+            nullable: true
         - name: isActive
           in: query
           schema:
             type: boolean
+            nullable: true
         - name: X-Correlation-ID
           in: header
           description: Correlation Id for the request
           schema:
             type: string
       responses:
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
         '200':
           description: Success
           content:
@@ -43,19 +52,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Address'
-        '404':
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
         default:
           description: Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
-      x-group-name: Addresses
       x-proxy-name: Get Address
     post:
       tags:
@@ -66,6 +68,7 @@ paths:
           required: true
           schema:
             type: string
+            nullable: true
         - name: X-Correlation-ID
           in: header
           description: Correlation Id for the request
@@ -83,25 +86,24 @@ paths:
             schema:
               $ref: '#/components/schemas/AddAddress'
       responses:
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Address'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
         default:
           description: Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
-      x-group-name: Addresses
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
       x-proxy-name: Add Address
   '/api/v1/persons/{personId}/addresses/{addressId}':
     get:
@@ -111,41 +113,39 @@ paths:
         - name: personId
           in: path
           required: true
-          style: simple
           schema:
             type: string
+            nullable: true
         - name: addressId
           in: path
           required: true
-          style: simple
           schema:
             type: string
+            nullable: true
         - name: X-Correlation-ID
           in: header
           description: Correlation Id for the request
-          style: simple
           schema:
             type: string
       responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Address'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
         default:
           description: Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
-      x-group-name: Addresses
       x-proxy-name: Get Address by ID
     put:
       tags:
@@ -154,19 +154,18 @@ paths:
         - name: addressId
           in: path
           required: true
-          style: simple
           schema:
             type: string
+            nullable: true
         - name: personId
           in: path
           required: true
-          style: simple
           schema:
             type: string
+            nullable: true
         - name: X-Correlation-ID
           in: header
           description: Correlation Id for the request
-          style: simple
           schema:
             type: string
       requestBody:
@@ -182,15 +181,15 @@ paths:
               $ref: '#/components/schemas/UpdateAddress'
       responses:
         '204':
-          description: No Content
-        '400':
-          description: Bad Request
+          description: Success
+        '404':
+          description: Not Found
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
-        '404':
-          description: Not Found
+        '400':
+          description: Bad Request
           content:
             application/json:
               schema:
@@ -201,46 +200,43 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
-      x-group-name: Addresses
       x-proxy-name: Update Address
 components:
   schemas:
-    AddAddress:
-      required:
-        - city
-        - countryCode
-        - line1
-        - postalCode
-        - state
+    ProblemDetails:
       type: object
       properties:
-        city:
-          minLength: 1
-          type: string
-        countryCode:
-          minLength: 1
-          type: string
-        isPrimary:
-          type: boolean
-          default: false
-        line1:
-          minLength: 1
-          type: string
-        line2:
+        code:
           type: string
           nullable: true
-        line3:
+        detail:
           type: string
           nullable: true
-        locationCode:
-          $ref: '#/components/schemas/LocationCode'
-        postalCode:
-          minLength: 1
+        instance:
           type: string
-        state:
-          minLength: 1
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        title:
           type: string
-      additionalProperties: false
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+      additionalProperties:
+        type: object
+        additionalProperties: false
+    LocationCode:
+      enum:
+        - SCHOOL
+        - HOME
+        - WORK
+      type: string
     Address:
       type: object
       properties:
@@ -279,62 +275,23 @@ components:
           type: string
           nullable: true
       additionalProperties: false
-    LocationCode:
-      enum:
-        - SCHOOL
-        - HOME
-        - WORK
-      type: string
-    ProblemDetails:
-      type: object
-      properties:
-        code:
-          type: string
-          nullable: true
-        detail:
-          type: string
-          nullable: true
-        instance:
-          type: string
-          nullable: true
-        status:
-          type: integer
-          format: int32
-          nullable: true
-        title:
-          type: string
-          nullable: true
-        traceId:
-          type: string
-          nullable: true
-        type:
-          type: string
-          nullable: true
-      additionalProperties: {}
-    UpdateAddress:
+    AddAddress:
       required:
+        - city
         - countryCode
-        - lastUpdateDateTime
+        - isPrimary
         - line1
+        - postalCode
+        - state
       type: object
       properties:
         city:
           type: string
-          nullable: true
         countryCode:
-          minLength: 1
           type: string
-        isActive:
-          type: boolean
-          default: false
         isPrimary:
           type: boolean
-          default: false
-        lastUpdateDateTime:
-          type: string
-          format: date-time
         line1:
-          minLength: 1
           type: string
         line2:
           type: string
@@ -346,11 +303,51 @@ components:
           $ref: '#/components/schemas/LocationCode'
         postalCode:
           type: string
-          nullable: true
         state:
           type: string
-          nullable: true
       additionalProperties: false
+    UpdateAddress:
+      required:
+        - city
+        - countryCode
+        - isPrimary
+        - lastUpdateDateTime
+        - line1
+        - postalCode
+        - state
+      type: object
+      properties:
+        city:
+          type: string
+        countryCode:
+          type: string
+        isPrimary:
+          type: boolean
+        lastUpdateDateTime:
+          type: string
+          format: date-time
+        line1:
+          type: string
+        line2:
+          type: string
+          nullable: true
+        line3:
+          type: string
+          nullable: true
+        locationCode:
+          $ref: '#/components/schemas/LocationCode'
+        postalCode:
+          type: string
+        state:
+          type: string
+      additionalProperties: false
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: http://nwnifieil120.us.ad.usa-ed.net/authorizationdev/connect/token
+          scopes: { }
 x-error-codes:
   ADD4001:
     Title: City is required.
@@ -382,3 +379,5 @@ x-error-codes:
     Title: Loan not found.
   GBL4006:
     Title: Invalid Loan Id.
+
+    
