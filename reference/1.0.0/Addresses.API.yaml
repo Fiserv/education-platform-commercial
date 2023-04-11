@@ -2,13 +2,13 @@ openapi: 3.0.1
 info:
   title: Addresses
   description: "Retrieve, add, or update a borrower's postal mailing address, including the address' primary and active statuses.  Both domestic and international addresses are supported.\n\n**Example Values:**\n```\n{\n\t\"city\": \"Brookfield\",\n\t\"countryCode\": \"USA\",\n\t\"id\": \"1\",\n\t\"isPrimary\": true,\n\t\"isActive\": true,\n\t\"lastUpdateDateTime\": \"2021-11-04T18:33:23Z\",\n\t\"line1\": \"255 Fiserv Dr.\",\n\t\"line2\": \"\",\n\t\"line3\": \"\",\n\t\"locationCode\": \"WORK\",\n\t\"postalCode\": \"53045\",\n\t\"state\": \"WI\"\n}\n```\n\n**BAL Addresses REST API FAQ:**\n1) Where do we get the LocationCode value from?\n\n\t A: The API is expecting one of these \"SCHOOL, HOME, WORK\"\n2) How do I only get the primary address?\n\n\t A: /addresses/api/v1/persons/[personid]/addresses?isPrimary=true\n3) Are addresses validated?\n\n\t A: There is internal validation run, but as long as all required fields are present it will be stored"
-  termsOfService: https://FirstData.com/
+  termsOfService: 'https://FirstData.com/'
   contact:
     name: First Data Education
-    url: https://FirstData.com/
+    url: 'https://FirstData.com/'
   license:
     name: First Data Education License
-    url: https://FirstData.com/
+    url: 'https://FirstData.com/'
   version: v1
 paths:
   '/api/v1/persons/{personId}/addresses':
@@ -186,14 +186,14 @@ paths:
       responses:
         '204':
           description: No Content
-        '404':
-          description: Not Found
+        '400':
+          description: Bad Request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
-        '400':
-          description: Bad Request
+        '404':
+          description: Not Found
           content:
             application/json:
               schema:
@@ -312,7 +312,7 @@ components:
         type:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: {}
     UpdateAddress:
       required:
         - countryCode
@@ -358,8 +358,8 @@ components:
       type: oauth2
       flows:
         clientCredentials:
-          tokenUrl: http://nwnifieil120.us.ad.usa-ed.net/authorizationdev/connect/token
-          scopes: { }
+          tokenUrl: 'http://nwnifieil120.us.ad.usa-ed.net/authorizationdev/connect/token'
+          scopes: {}
 x-error-codes:
   ADD4001:
     Title: City is required.
