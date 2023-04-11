@@ -1,14 +1,18 @@
 openapi: 3.0.1
 info:
   title: Memos
-  description: Retrieve or add comment codes to a specific loan. Free-form comments are also supported. Refer to the list of valid code values and descriptions available in the Education Platform from Fiserv (EPF) client documentation site.
-  termsOfService: https://fiserv.com/
+  description: >-
+    Retrieve or add comment codes to a specific loan. Free-form comments are
+    also supported. Refer to the list of valid code values and descriptions
+    available in the Education Platform from Fiserv (EPF) client documentation
+    site.
+  termsOfService: 'https://fiserv.com/'
   contact:
     name: Fiserv
-    url: https://fiserv.com/
+    url: 'https://fiserv.com/'
   license:
     name: First Data Education License
-    url: https://fiserv.com/
+    url: 'https://fiserv.com/'
   version: v1
 paths:
   '/api/v1/loans/{loanId}/memo':
@@ -125,4 +129,4 @@ components:
         type:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: {}
