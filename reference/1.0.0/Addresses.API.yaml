@@ -148,7 +148,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
       x-group-name: Addresses
       x-proxy-name: Get Address by ID
-  '/api/v1/persons/{personId}/addresses': 
+  '/api/v1/persons/{personId}/addresses/{addressId}':
     put:
       tags:
         - Addresses
