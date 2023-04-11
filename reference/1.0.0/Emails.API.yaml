@@ -19,23 +19,19 @@ paths:
         - name: personId
           in: path
           required: true
-          style: simple
           schema:
             type: string
         - name: isActive
           in: query
-          style: form
           schema:
             type: boolean
         - name: isPrimary
           in: query
-          style: form
           schema:
             type: boolean
         - name: X-Correlation-ID
           in: header
           description: Correlation Id for the request
-          style: simple
           schema:
             type: string
       responses:
