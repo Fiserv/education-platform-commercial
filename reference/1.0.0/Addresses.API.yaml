@@ -19,31 +19,26 @@ paths:
         - name: personId
           in: path
           required: true
+          style: simple
           schema:
             type: string
-            nullable: true
         - name: isPrimary
           in: query
+          style: form
           schema:
             type: boolean
-            nullable: true
         - name: isActive
           in: query
+          style: form
           schema:
             type: boolean
-            nullable: true
         - name: X-Correlation-ID
           in: header
           description: Correlation Id for the request
+          style: simple
           schema:
             type: string
       responses:
-        '404':
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
         '200':
           description: Success
           content:
@@ -52,6 +47,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Address'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
         default:
           description: Error
           content:
@@ -66,12 +67,13 @@ paths:
         - name: personId
           in: path
           required: true
+          style: simple
           schema:
             type: string
-            nullable: true
         - name: X-Correlation-ID
           in: header
           description: Correlation Id for the request
+          style: simple
           schema:
             type: string
       requestBody:
@@ -86,24 +88,24 @@ paths:
             schema:
               $ref: '#/components/schemas/AddAddress'
       responses:
-        default:
-          description: Error
+        '201':
+          description: Created
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProblemDetails'
+                $ref: '#/components/schemas/Address'
         '400':
           description: Bad Request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
-        '201':
-          description: Success
+        default:
+          description: Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Address'
+                $ref: '#/components/schemas/ProblemDetails'
       x-proxy-name: Add Address
   '/api/v1/persons/{personId}/addresses/{addressId}':
     get:
@@ -113,33 +115,34 @@ paths:
         - name: personId
           in: path
           required: true
+          style: simple
           schema:
             type: string
-            nullable: true
         - name: addressId
           in: path
           required: true
+          style: simple
           schema:
             type: string
-            nullable: true
         - name: X-Correlation-ID
           in: header
           description: Correlation Id for the request
+          style: simple
           schema:
             type: string
       responses:
-        '404':
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
         '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Address'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
         default:
           description: Error
           content:
@@ -154,18 +157,19 @@ paths:
         - name: addressId
           in: path
           required: true
+          style: simple
           schema:
             type: string
-            nullable: true
         - name: personId
           in: path
           required: true
+          style: simple
           schema:
             type: string
-            nullable: true
         - name: X-Correlation-ID
           in: header
           description: Correlation Id for the request
+          style: simple
           schema:
             type: string
       requestBody:
@@ -181,7 +185,7 @@ paths:
               $ref: '#/components/schemas/UpdateAddress'
       responses:
         '204':
-          description: Success
+          description: No Content
         '404':
           description: Not Found
           content:
@@ -203,40 +207,42 @@ paths:
       x-proxy-name: Update Address
 components:
   schemas:
-    ProblemDetails:
+    AddAddress:
+      required:
+        - city
+        - countryCode
+        - line1
+        - postalCode
+        - state
       type: object
       properties:
-        code:
+        city:
+          minLength: 1
+          type: string
+        countryCode:
+          minLength: 1
+          type: string
+        isPrimary:
+          type: boolean
+          default: false
+        line1:
+          minLength: 1
+          type: string
+        line2:
           type: string
           nullable: true
-        detail:
+        line3:
           type: string
           nullable: true
-        instance:
+        locationCode:
+          $ref: '#/components/schemas/LocationCode'
+        postalCode:
+          minLength: 1
           type: string
-          nullable: true
-        status:
-          type: integer
-          format: int32
-          nullable: true
-        title:
+        state:
+          minLength: 1
           type: string
-          nullable: true
-        traceId:
-          type: string
-          nullable: true
-        type:
-          type: string
-          nullable: true
-      additionalProperties:
-        type: object
-        additionalProperties: false
-    LocationCode:
-      enum:
-        - SCHOOL
-        - HOME
-        - WORK
-      type: string
+      additionalProperties: false
     Address:
       type: object
       properties:
@@ -275,58 +281,62 @@ components:
           type: string
           nullable: true
       additionalProperties: false
-    AddAddress:
-      required:
-        - city
-        - countryCode
-        - isPrimary
-        - line1
-        - postalCode
-        - state
+    LocationCode:
+      enum:
+        - SCHOOL
+        - HOME
+        - WORK
+      type: string
+    ProblemDetails:
       type: object
       properties:
-        city:
-          type: string
-        countryCode:
-          type: string
-        isPrimary:
-          type: boolean
-        line1:
-          type: string
-        line2:
+        code:
           type: string
           nullable: true
-        line3:
+        detail:
           type: string
           nullable: true
-        locationCode:
-          $ref: '#/components/schemas/LocationCode'
-        postalCode:
+        instance:
           type: string
-        state:
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        title:
           type: string
-      additionalProperties: false
+          nullable: true
+        traceId:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+      additionalProperties: { }
     UpdateAddress:
       required:
-        - city
         - countryCode
-        - isPrimary
         - lastUpdateDateTime
         - line1
-        - postalCode
-        - state
       type: object
       properties:
         city:
           type: string
+          nullable: true
         countryCode:
+          minLength: 1
           type: string
+        isActive:
+          type: boolean
+          default: false
         isPrimary:
           type: boolean
+          default: false
         lastUpdateDateTime:
           type: string
           format: date-time
         line1:
+          minLength: 1
           type: string
         line2:
           type: string
@@ -338,8 +348,10 @@ components:
           $ref: '#/components/schemas/LocationCode'
         postalCode:
           type: string
+          nullable: true
         state:
           type: string
+          nullable: true
       additionalProperties: false
   securitySchemes:
     oauth2:
@@ -379,5 +391,3 @@ x-error-codes:
     Title: Loan not found.
   GBL4006:
     Title: Invalid Loan Id.
-
-    
