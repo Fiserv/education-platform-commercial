@@ -2,6 +2,7 @@
 
 ## Addresses
 
+
 1. How do I only get certain types of addresses returned?
 
     A: To get only the address designated as primary, use /addresses/api/v1/persons/[personid]/addresses?isPrimary=true
