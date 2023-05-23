@@ -1,0 +1,66 @@
+{
+  "title": "Education Platform - Commercial",
+  "name": "EducationPlatformCommercial",
+  "brand": "Fiserv",
+  "brandLogoURL": "https://raw.githubusercontent.com/Fiserv/Developer-Portal-Tenant-API/develop/assets/images/Fiserv_Logo.jpg",
+  "solution": ["fintech"],
+  "brandDescription": "The Education Platform from Fiserv (EPF) offers loan processing services that clients can leverage to enable student loan servicing and account support activities. Our processing services are designed to easily integrate with client hosted technology or line of business solutions. ",
+  "apiVersions": [
+      {
+        "version": "1.0.0",
+        "versionType": "major",
+        "releaseNotesPath": "docs/release-notes/2022/march.md",
+        "apiSpecFileNames": ["Addresses-API"]
+      }
+  ],
+  "product": {
+    "featured": true,
+    "logoURL": "https://raw.githubusercontent.com/Fiserv/Developer-Portal-Tenant-API/develop/assets/images/Portal_Logo.png",
+    "description": "To onboard properly into the Developer Studio as a tenant each product must support these APIs so that we can retrieve product specific API specifications and documentation.",
+    "longDescription":"To onboard properly into the Developer Studi as a tenant each product must support these APIs so that we can retrieve product specific API specifications and documentation.",
+    "apiSpecification": "/v1/apis/EducationPlatformCommercial",
+    "layout": "/v1/layouts/EducationPlatformCommercial",
+    "documentation": "/v1/docs/EducationPlatformCommercial",
+    "documenttree": "/v1/docs/EducationPlatformCommercial",
+    "documenttreeV2": "/v2/docs/EducationPlatformCommercial",
+    "docsCount": "/v2/docs/count/EducationPlatformCommercial",
+    "sandbox": "/v1/sandboxrun/EducationPlatformCommercial",
+    "accessConfig": "/v1/fileAccess/EducationPlatformCommercial",
+    "assets": "/v1/assets/EducationPlatformCommercial",    
+    "feature":[
+      {
+        "name": "sandBox",
+        "value": true
+      },
+      {
+        "name": "plugins",
+        "value": false
+      },
+      {
+        "name": "industryOptionsAPIExplorer",
+        "value": false
+      },
+      {
+        "name": "editParameterAPIExplorer",
+        "value": false
+      }
+    ]
+  },
+  "supportConfig": [{ 
+    "bug": {
+      "label": "bug,CommerceHub",
+      "template": "bug.md",
+      "assignees": "cjuhlman21"
+    },  
+    "feedback": {
+      "label": "feedback,CommerceHub",
+      "template": "feedback.md",
+      "assignees": "cjuhlman21"
+    },
+    "enhancement": {
+      "label": "enhancement,CommerceHub",
+      "template": "feature.md",
+      "assignees": "cjuhlman21"
+    }
+  }]
+}
